@@ -6,20 +6,120 @@
     <title>Turbine Heat and Power</title>
     
     <!-- React -->
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     
+    <!-- Babel para JSX -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    
-    <!-- Estilos UI -->
-    <link href="https://cdn.jsdelivr.net/npm/@radix-ui/themes@latest/styles.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/lucide@latest"></script>
+
+    <style>
+        /* Estilos básicos */
+        .min-h-screen { min-height: 100vh; }
+        .bg-gray-900 { background-color: #1a202c; }
+        .text-white { color: white; }
+    </style>
 </head>
 <body>
     <div id="root"></div>
-    <script type="module" src="index.js"></script>
+    
+    <!-- Tu código React -->
+    <script type="text/babel">
+        // Importar los iconos que necesitas
+        const { Globe, Search, ChevronLeft, ChevronRight } = lucide;
+
+        function Button({ children, className, ...props }) {
+            return (
+                <button className={`px-4 py-2 rounded ${className}`} {...props}>
+                    {children}
+                </button>
+            );
+        }
+
+        function Card({ children }) {
+            return (
+                <div className="bg-white rounded-lg shadow-lg p-6">
+                    {children}
+                </div>
+            );
+        }
+
+        function CardHeader({ children }) {
+            return <div className="mb-4">{children}</div>;
+        }
+
+        function CardTitle({ children }) {
+            return <h3 className="text-xl font-bold">{children}</h3>;
+        }
+
+        function CardContent({ children }) {
+            return <div>{children}</div>;
+        }
+
+        function PaginaInicio() {
+            const [currentSlide, setCurrentSlide] = React.useState(0);
+            const slides = [
+                {
+                    title: "Somos Turbine Heat and Power",
+                    subtitle: "una empresa de tecnología energética",
+                    description: "Llevamos la energía hacia adelante - haciéndola más segura, limpia y eficiente para las personas y el planeta.",
+                    image: "https://via.placeholder.com/1200x600?text=Slide+1"
+                },
+                {
+                    title: "Soluciones Innovadoras",
+                    subtitle: "para un futuro sostenible",
+                    description: "Nuestras turbinas de última generación están diseñadas para maximizar la eficiencia y minimizar el impacto ambiental.",
+                    image: "https://via.placeholder.com/1200x600?text=Slide+2"
+                },
+                {
+                    title: "Experiencia Global",
+                    subtitle: "con impacto local",
+                    description: "Con presencia en más de 50 países, ofrecemos soluciones adaptadas a las necesidades energéticas locales.",
+                    image: "https://via.placeholder.com/1200x600?text=Slide+3"
+                }
+            ];
+
+            const nextSlide = () => {
+                setCurrentSlide((prev) => (prev + 1) % slides.length);
+            };
+
+            const prevSlide = () => {
+                setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+            };
+
+            return (
+                <div className="flex flex-col min-h-screen">
+                    <header className="bg-gray-900 text-white">
+                        <div className="container mx-auto px-4 py-2 flex justify-between items-center">
+                            <div className="flex space-x-4">
+                                <a href="#" className="text-sm hover:underline">Contáctenos</a>
+                                <a href="#" className="text-sm hover:underline">Carreras</a>
+                                <a href="#" className="text-sm hover:underline">Inversores</a>
+                            </div>
+                            <div className="flex items-center space-x-4">
+                                <span className="text-sm">THP $36.45</span>
+                                <button className="flex items-center text-sm">
+                                    <Globe className="h-4 w-4 mr-1" />
+                                    Español
+                                </button>
+                            </div>
+                        </div>
+                    </header>
+
+                    {/* Resto del código igual que antes */}
+                    
+                </div>
+            );
+        }
+
+        // Renderizar la aplicación
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<PaginaInicio />);
+    </script>
 </body>
 </html>
