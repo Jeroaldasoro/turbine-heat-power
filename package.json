@@ -5,14 +5,18 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "export": "next export"
   },
   "dependencies": {
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "@/components/ui/button": "latest",
-    "@/components/ui/card": "latest",
-    "lucide-react": "^0.263.1"
+    "@radix-ui/react-icons": "latest",
+    "@radix-ui/themes": "latest",
+    "lucide-react": "^0.263.1",
+    "tailwindcss": "latest",
+    "postcss": "latest",
+    "autoprefixer": "latest"
   }
 }
